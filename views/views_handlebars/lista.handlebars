@@ -1,0 +1,47 @@
+<div class="row row-cols-1 row-cols-md-12 mb-12 text-center">
+    <div class="col">
+        <div class="card mb-12 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Vista de Protductos</h4>
+            </div>
+
+
+            {{#if lista  }}
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Foto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each lista}}
+                                <tr>
+                                    <td>
+                                        {{ this.title }}
+                                    </td>
+                                    <td>
+                                        {{ this.price }}
+                                    </td>
+                                    <td><img src="{{ this.thumbnail }}" alt="" height="60px"></td>
+                                </tr>
+                            {{/each}}
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            {{else}}
+                <div class="alert alert-warning" role="alert">
+                    No se ecnontraron productos!!
+                </div>
+            {{/if}}
+
+        </div>
+    </div>
+
+
+</div>

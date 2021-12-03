@@ -1,0 +1,41 @@
+<div class="row row-cols-1 row-cols-md-12 mb-12 text-center">
+    <div class="col">
+        <div class="card mb-12 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Ingrese Protducto</h4>
+            </div>
+            <div class="card-body">
+                <form class="row g-3 pt-5" action="/productos" method="post">
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Nombre del producto</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="price" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="price" name="price" required>
+                    </div>
+                    <div class="col-12">
+                        <img src="{{foto}}" alt="" height="20px">
+                        <label for="thumbnail" class="form-label">Foto URL</label>
+                        <input type="text" class="form-control" id="thumbnail" name="thumbnail" required
+                            value="{{foto}}">
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Guardar</button>
+                    </div>
+                </form>
+
+            </div>
+
+            {{#if mensaje}}
+                <div class="alert alert-success" role="alert">
+                    {{mensaje}}
+                </div>
+            {{/if}}
+                
+        </div>
+    </div>
+
+
+</div>
