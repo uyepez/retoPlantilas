@@ -5,35 +5,35 @@ const Productos = require('./productos.js')
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.set('views','./views/views_ejs')
-app.set('view engine', 'ejs');
+app.set('views', './views/views_pug')
+app.set('view engine', 'pug');
 
 const listaProductos = new Productos()
 
 const listaImagenes = [
-    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/019_-_Star-128.png"},
-    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/006_-_Present-128.png"},
-    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/025_-_Mince_Pie-128.png"},
-    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/018_-_Candle-128.png"},
-    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/007_-_Present-128.png"},
-    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/015_-_Stocking-128.png"},
-    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/59/026_-_Baubles-128.png"}
+    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/019_-_Star-128.png" },
+    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/006_-_Present-128.png" },
+    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/025_-_Mince_Pie-128.png" },
+    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/018_-_Candle-128.png" },
+    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/007_-_Present-128.png" },
+    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/015_-_Stocking-128.png" },
+    { foto: "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/59/026_-_Baubles-128.png" }
 ]
 
 
 //index vista de formulario
-app.get('/', function(req, res){
+app.get('/', function (req, res) {
     const randomElement = listaImagenes[Math.floor(Math.random() * listaImagenes.length)];
-    res.render('layouts/index',{
+    res.render('layouts/index', {
         foto: randomElement.foto,
-        mensaje:''
+        mensaje: ''
     })
 })
 
 
 //vista de lista
 app.post('/productos', function (req, res) {
-    console.log("body",req.body);
+    console.log("body", req.body);
     let nuevoProducto = {
         title: req.body.title,
         price: req.body.price,
@@ -42,6 +42,8 @@ app.post('/productos', function (req, res) {
     }
     const ultimoProducto = listaProductos.nuevo(nuevoProducto);
     const randomElement = listaImagenes[Math.floor(Math.random() * listaImagenes.length)];
+
+    console.log("ultimoProducto: ", ultimoProducto);
 
     res.render('layouts/index', {
         foto: randomElement.foto,
@@ -52,6 +54,7 @@ app.post('/productos', function (req, res) {
 
 app.get('/lista', function (req, res) {
     //listaProductos=[]
+    console.log(listaProductos.productos);
 
     res.render('layouts/lista', {
         lista: listaProductos.productos,
